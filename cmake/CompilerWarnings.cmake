@@ -49,10 +49,10 @@ function(set_project_warnings project_name)
             -Wformat=2 # warn on security issues around functions that format output (ie printf)
             )
 
-    if(WARNINGS_AS_ERRORS)
+    if (WARNINGS_AS_ERRORS)
         set(CLANG_WARNINGS ${CLANG_WARNINGS} -Werror)
         set(MSVC_WARNINGS ${MSVC_WARNINGS} /WX)
-    endif()
+    endif ()
 
     set(GCC_WARNINGS
             ${CLANG_WARNINGS}
@@ -63,18 +63,18 @@ function(set_project_warnings project_name)
             -Wuseless-cast # warn if you perform a cast to the same type
             )
 
-    if(MSVC)
+    if (MSVC)
         set(PROJECT_WARNINGS ${MSVC_WARNINGS})
         message(STATUS "MSVC compiler")
-    elseif(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
+    elseif (CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
         set(PROJECT_WARNINGS ${CLANG_WARNINGS})
         message(STATUS "Clang compiler")
-    elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         set(PROJECT_WARNINGS ${GCC_WARNINGS})
         message(STATUS "GCC compiler")
-    else()
+    else ()
         message(AUTHOR_WARNING "No compiler warnings set for '${CMAKE_CXX_COMPILER_ID}' compiler.")
-    endif()
+    endif ()
 
     target_compile_options(${project_name} INTERFACE ${PROJECT_WARNINGS})
 

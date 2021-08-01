@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.19)
-project(Collectio_Librorum)
+
+project(Collectio_Librorum LANGUAGES CXX VERSION 0.0.1)
+
 include(${CMAKE_SOURCE_DIR}/cmake/gtest.cmake)
 include(${CMAKE_SOURCE_DIR}/cmake/qtTest.cmake)
 
